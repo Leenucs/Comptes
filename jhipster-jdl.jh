@@ -1,0 +1,37 @@
+entity Mouvement {
+	nomMouvement String,
+    typeMouvement TypeMouvement,
+    dateMouvement LocalDate,
+    effectue Boolean,
+    montant Long
+}
+
+entity MouvementFixe {
+	nomMouvement String,
+    typeMouvement TypeMouvement,
+    montant Long
+}
+
+
+entity Registre {
+	nomRegistre String,
+    dateCreation LocalDate
+    soldePrevisionnel BigDecimal
+    soldeReel BigDecimal
+}
+
+enum TypeMouvement {
+    DEPENSE, RECETTE
+}
+
+relationship ManyToOne {
+	Registre{mouvement} to Mouvement
+}
+
+paginate JobHistory, Employee with infinite-scroll
+paginate Job with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl except Employee, Job
+angularSuffix * with mySuffix
